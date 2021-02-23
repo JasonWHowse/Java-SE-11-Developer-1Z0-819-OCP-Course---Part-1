@@ -17,6 +17,11 @@ class Dog extends Animal {
     public void printDog() {
         System.out.println("I am a dog");
     }//public void printDog() {
+
+    public String getDogString() {
+        return "dog";
+    }//public String getDogString() {
+
 }//class Dog extends Animal {
 
 // Cat is also a subclass of Animal
@@ -29,24 +34,34 @@ class Cat extends Animal {
 public class DowncastExamples {
     public static void main(String[] args) {
         DowncastExamples dex = new DowncastExamples();
-// We create instances of Dog and Cat but assign them to
-// variables of type Animal
+        // We create instances of Dog and Cat but assign them to
+        // variables of type Animal
         Animal genericDog = new Dog();
         Animal genericCat = new Cat();
 
-// We cast now:
+        // We cast now:
         dex.testDog((Dog) genericDog);
         dex.testCat((Cat) genericCat);
 
-// Try the overloaded methods with
-// specifically typed variables.
+        // Try the overloaded methods with
+        // specifically typed variables.
         dex.testAnimal((Dog) genericDog);
         dex.testAnimal((Cat) genericCat);
 
-// Try the overloaded methods with
-// generically typed variables.
+        // Try the overloaded methods with
+        // generically typed variables.
         dex.testAnimal(genericDog);
         dex.testAnimal(genericCat);
+
+        // Downcasting in an expression to access a specific method on a
+        // more specific type
+        if (((Dog) genericDog).getDogString().equals("dog")) {
+            System.out.println("Matched!");
+        }//if (((Dog) genericDog).getDogString().equals("dog")) {
+
+        // downcasting a method return type
+        Cat c = (Cat) dex.passThrough(genericCat);
+        c.printCat();
     }
 
     //Three Overloaded methods
@@ -73,4 +88,8 @@ public class DowncastExamples {
     public void testCat(Cat cat) {
         cat.printCat();
     }//public void testCat(Cat cat) {
+
+    public Object passThrough(Object o) {
+        return o;
+    }//public Object passThrough(Object o) {
 }//public class DowncastExamples {
