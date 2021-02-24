@@ -43,5 +43,69 @@ public class ListDeclaration {
         // implement List to a List variable
         l = a;
         intList = integerArray;
+
+        // add some data
+        for (int i = 0; i < 5; i++) {
+            // adds data at end of list...
+            stringArray.add("String_" + (i + 1));
+            integerArray.add(i + 1);
+        }//for (int i = 0; i < 5; i++) {
+        System.out.println(stringArray);
+        System.out.println(integerArray);
+
+        // add some data at certain index
+        for (int i = 0; i < 5; i++) {
+            // adds data at end of list...
+            stringArray.add(1, "String_" + (i + 1));
+            integerArray.add(1, i + 1);
+        }//for (int i = 0; i < 5; i++) {
+        System.out.println(stringArray);
+        System.out.println(integerArray);
+
+        // addAll adds a collection of data, this call appends data to
+        // end of list
+        integerArray.addAll(List.of(15, 25, 30));
+        System.out.println(integerArray);
+
+        // addAll adds a collection of data, this call inserts all
+        // elements of the list starting at the index, moving existing
+        // elements to a higher index location
+        integerArray.addAll(1, List.of(150, 250, 300));
+        System.out.println(integerArray);
+
+        // Remove a single element, and only the first match, using
+        // remove method
+        stringArray.remove("String_5");
+        System.out.println("stringArray after removing one element, String_5 "
+                + stringArray.toString());
+
+        // Remove a matching element
+        stringArray.removeIf(s -> s.contains("_2"));
+        System.out.println("stringArray after removing any elements that contain '_2' "
+                + stringArray.toString());
+
+        // Replaces values in the array using a lambda expression
+        stringArray.replaceAll((s) -> s.replace("String_", "Test_"));
+        System.out.println("stringArray after replaceAll  "
+                + stringArray.toString());
+
+        // Put them back the way they were...
+        stringArray.replaceAll((s) -> s.replace("Test_", "String_"));
+
+        // Remove a set of elements using removeAll method
+        // Note that the list you pass removeAll may contain elements
+        // that are not in stringArray.  It will remove matched elements
+        stringArray.removeAll(
+                List.of("String_1", "String_3", "String_10"));
+        System.out.println("stringArray after removing several elements "
+                + stringArray.toString());
+
+        // Keep only a defined set of elements using ArrayList.retainAll
+        stringArray.retainAll(List.of("String_4"));
+        System.out.println("stringArray after retaining only String_4 "
+                + stringArray.toString());
+
+        // Print String objects in the list using forEach
+        stringArray.forEach((s) -> System.out.println(s));
     }//public static void main(String[] args) {
 }//public class ListDeclaration {
