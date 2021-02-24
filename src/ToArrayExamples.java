@@ -135,5 +135,75 @@ public class ToArrayExamples {
         testValue = (int) dRaw[0];
         System.out.println("--- Cast required at individual level:" +
                 " the first element is " + testValue);
+
+        System.out.println("\nScenario 4:  Array passed is too small");
+        // Scenario 4: array.length < list.size();
+        //             and array elements initialized to null or otherwise
+        // the method toArray() populates a newly instantiated
+        // array of the same type as the parameter passed,
+        // and the size of the list itself, not the parameter passed
+        aIntArray = new Integer[3];
+
+        // Let's make no assumptions about what is returned...
+        var eInt = intList.toArray(aIntArray);
+        System.out.println("Result type from ArrayList<Integer> " +
+                "assigned to var = " +
+                eInt.getClass().getTypeName());
+        System.out.println("--- Resulting array elements = " +
+                Arrays.toString(eInt));
+
+        // No casting required.
+        testValue = eInt[0];
+        System.out.println("--- No cast required at individual level:" +
+                " the first element is " + testValue);
+
+        // Reset the array we use as a parameter between tests, so
+        // tests between raw ArrayList and generic ArrayList are same
+        aIntArray = new Integer[3];
+
+        // A raw ArrayList will still return an Integer[] array
+
+        var eRaw = rawList.toArray(aIntArray);
+        System.out.println("Result type from ArrayList assigned to var = " +
+                eRaw.getClass().getTypeName());
+        System.out.println("--- Resulting array elements = " +
+                Arrays.toString(eRaw));
+
+        // Casting required.
+        testValue = (int) eRaw[0];
+        System.out.println("--- Cast required at individual level: the " +
+                "first element is " + testValue);
+
+        System.out.println("\nScenario 5:  Array passed is now Number[] and not a reference variable");
+        // Scenario 5: array.length < list.size();
+        //             and no reference to array passed
+        // the method toArray() populates a newly instantiated
+        // array of the same type as the parameter passed,
+        // and the size of the list itself, not the parameter passed
+
+        var fInt = intList.toArray(new Number[0]);
+        System.out.println("Result type from ArrayList<Integer> " +
+                "assigned to var = " +
+                fInt.getClass().getTypeName());
+        System.out.println("--- Resulting array elements = " +
+                Arrays.toString(fInt));
+
+        // casting required.
+        testValue = (int) fInt[0];
+        System.out.println("--- Cast required at individual level:" +
+                " the first element is " + testValue);
+
+        // A raw ArrayList will still return a Number[] array
+
+        var fRaw = rawList.toArray(new Number[0]);
+        System.out.println("Result type from ArrayList assigned to var = " +
+                fRaw.getClass().getTypeName());
+        System.out.println("--- Resulting array elements = " +
+                Arrays.toString(fRaw));
+
+        // Casting required.
+        testValue = (int) fRaw[0];
+        System.out.println("--- Cast required at individual level: the " +
+                "first element is " + testValue);
     }//public static void main(String[] args) {
 }//public class ToArrayExamples {
