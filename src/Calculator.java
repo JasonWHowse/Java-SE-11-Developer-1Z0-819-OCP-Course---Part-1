@@ -5,21 +5,23 @@ Topic: Lambda Expressions
 Sub-Topic: Lambda Expression Parameters.
 */
 
+import java.util.function.IntUnaryOperator;
+
 // Calculator Class
 public class Calculator {
 
     // We declare a functional interface as part of the class.
     // A functional interface is an interface with one and only one
     // abstract method.
-    interface UnaryIntegerOperation {
-        int calculate(int a);
-    }//interface UnaryIntegerOperation {
+//    interface UnaryIntegerOperation {
+//        int calculate(int a);
+//    }//interface UnaryIntegerOperation {
 
     // We create a 'pass thru'  method, accepting an object which
     // implements our interface as one parameter.  The other parameter
     // is the number we'll be doing the operation on.
-    public int calculate(int a, UnaryIntegerOperation op) {
-        return op.calculate(a);
+    public int calculate(int a, IntUnaryOperator op) {
+        return op.applyAsInt(a);
     }//public int calculate(int a, UnaryIntegerOperation op) {
 
     public static void main(String... args) {
@@ -31,23 +33,23 @@ public class Calculator {
         // This lambda expression demonstrates a single typed parameter in
         // parentheses (if you specify type, you MUST use parentheses)
         // -- This operation will result in the value being squared.
-        UnaryIntegerOperation square = (int a) -> a * a;
+        IntUnaryOperator square = (int a) -> a * a;
 
         // This lambda expression demonstrates a single untyped parameter in
         // parentheses
         //-- This operation will result in the value being cubed.
-        UnaryIntegerOperation cube = (a) -> a * a * a;
+        IntUnaryOperator cube = (a) -> a * a * a;
 
         // This lambda expression demonstrates a single untyped parameter
         // without using parentheses
         //-- This operation will result in the value being incremented by 1.
-        UnaryIntegerOperation increment = a -> a + 1;
+        IntUnaryOperator increment = a -> a + 1;
 
         // This lambda expression demonstrates a single untyped parameter
         // without using parentheses, but our body is wrapped in brackets
         // and we use a return statement
         //-- This operation will result in the value being decremented by 1.
-        UnaryIntegerOperation decrement = a -> {
+        IntUnaryOperator decrement = a -> {
             return a - 1;
         };
 
