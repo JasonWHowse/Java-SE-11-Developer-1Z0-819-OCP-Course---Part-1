@@ -1,2 +1,3 @@
 module MyFirstModule {
+    requires MySecondModule;
 }

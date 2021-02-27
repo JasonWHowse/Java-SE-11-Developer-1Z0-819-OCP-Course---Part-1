@@ -4,14 +4,11 @@ Section 12: Understanding Modules
 Topic: Describe how a modular project is compiled and run.
 */
 
-package modular;
 
-import mod2.GoodbyeWorld;
+package mod2;
 
-public class HelloWorld {
+public class GoodbyeWorld {
     public static void main(String[] args) {
-        System.out.println("Hello new modular world");
-        GoodbyeWorld.main(args);
+        System.out.println("And that's a wrap - goodbye.");
     }//public static void main(String[] args) {
-}//public class HelloWorld {
-
+}//public class GoodbyeWorld {
